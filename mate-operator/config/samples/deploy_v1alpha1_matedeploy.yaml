@@ -1,0 +1,8 @@
+apiVersion: deploy.delv.com/v1alpha1
+kind: MateDeploy
+metadata:
+  name: matedeploy-sample
+spec:
+  namespace: my-namespace
+  sourceMarketplace: redhat-operators
+  sourceNamespace: openshift-marketplace

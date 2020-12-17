@@ -1,0 +1,24 @@
+# permissions for end users to edit matedeploys.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: matedeploy-editor-role
+rules:
+- apiGroups:
+  - deploy.delv.com
+  resources:
+  - matedeploys
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - deploy.delv.com
+  resources:
+  - matedeploys/status
+  verbs:
+  - get

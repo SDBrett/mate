@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: "2020-12-16T02:48:26Z"
+  name: subscription-admin-crb
+  resourceVersion: "372479"
+  selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/subscription-admin-crb
+  uid: 99b01f43-fee5-4b5c-82e8-aea608002e62
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: subscription-admin
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: mate-system

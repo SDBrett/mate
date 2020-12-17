@@ -1,0 +1,20 @@
+# permissions for end users to view matedeploys.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: matedeploy-viewer-role
+rules:
+- apiGroups:
+  - deploy.delv.com
+  resources:
+  - matedeploys
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - deploy.delv.com
+  resources:
+  - matedeploys/status
+  verbs:
+  - get

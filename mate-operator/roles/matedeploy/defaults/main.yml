@@ -1,0 +1,5 @@
+---
+# defaults file for MateDeploy
+source_marketplace: redhat-operators
+source_namespace: openshift-marketplace
+state: present

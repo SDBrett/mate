@@ -1,0 +1,11 @@
+# This kustomization.yaml is not intended to be run by itself,
+# since it depends on service name and namespace that are out of this kustomize package.
+# It should be run by config/default
+
+resources:
+- keycloak.org_keycloakbackups_crd.yaml
+- keycloak.org_keycloakclients_crd.yaml
+- keycloak.org_keycloakrealms_crd.yaml
+- keycloak.org_keycloaks_crd.yaml
+- keycloak.org_keycloakusers_crd.yaml
+# +kubebuilder:scaffold:crdkustomizeresource

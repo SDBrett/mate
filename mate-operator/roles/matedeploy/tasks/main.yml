@@ -1,0 +1,15 @@
+---
+- name: rhsso Subscription
+  k8s:
+    state: "{{ state }}"
+    namespace: "{{ namespace }}"
+    definition:
+      apiVersion: operators.coreos.com/v1alpha1
+      kind: Subscription
+      metadata:
+        name: rhsso-operator
+      spec:
+        channel: alpha
+        name: rhsso-operator
+        source: "{{ source_marketplace }}"
+        sourceNamespace: "{{ source_namespace }}"
