@@ -95,8 +95,27 @@ bundle: kustomize
 # Build the bundle image.
 .PHONY: bundle-build
 bundle-build:
-	docker build -f bundle.Dockerfile -t $(BUNDLE_IMG) .
+	docker build -f bundle.Dockerfile -t $(BUNDLE_IMG) . 
 
 .PHONY: get-keycloak-crds
 get-keycloak-crds:
 	curl -LJ https://github.com/keycloak/keycloak-operator/archive/$(KEYCLOAK_VERSION).tar.gz | tar --strip-components=3 -C $(ROOT_DIR)/config/crd/  -zxvf - keycloak-operator-$(KEYCLOAK_VERSION)/deploy/crds/keycloak
+
+
+# Options for "packagemanifests".
+ifneq ($(origin FROM_VERSION), undefined)
+PKG_FROM_VERSION := --from-version=$(FROM_VERSION)
+endif
+ifneq ($(origin CHANNEL), undefined)
+PKG_CHANNELS := --channel=$(CHANNEL)
+endif
+ifeq ($(IS_CHANNEL_DEFAULT), 1)
+PKG_IS_DEFAULT_CHANNEL := --default-channel
+endif
+PKG_MAN_OPTS ?= $(FROM_VERSION) $(PKG_CHANNELS) $(PKG_IS_DEFAULT_CHANNEL)
+.PHONY: packagemanifests
+# Generate package manifests.
+packagemanifests: kustomize
+	operator-sdk generate kustomize manifests -q
+	cd config/manager && $(KUSTOMIZE) edit set image controller=$(IMG)
+	$(KUSTOMIZE) build config/manifests | operator-sdk generate packagemanifests -q --version $(VERSION) $(PKG_MAN_OPTS)

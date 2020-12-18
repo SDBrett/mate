@@ -1,0 +1,44 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+    operators.operatorframework.io/builder: operator-sdk-v1.2.0
+    operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
+  name: mate.vX.Y.Z
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions: {}
+  description: test operator for mate
+  displayName: mate-operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: true
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - test
+  - mate
+  links:
+  - name: Mate
+    url: https://mate.domain
+  maintainers:
+  - email: brejohns@redhat.com
+    name: brett
+  maturity: alpha
+  provider:
+    name: SDBrett
+  version: 0.0.0
